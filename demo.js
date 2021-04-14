@@ -1,20 +1,6 @@
 /*
 'use strict'; 
 (function() {
-    const expr = 'Papayas';
-    switch (expr) {
-      case 'Oranges':
-        display('Oranges are $0.59 a pound.');
-        break;
-      case 'Mangoes':
-      case 'Papayas':
-        display('Mangoes and papayas are $2.79 a pound.');
-        // expected output: "Mangoes and papayas are $2.79 a pound."
-        break;
-      default:
-        display(`Sorry, we are out of ${expr}.`);
-    }
-  
 
 })();
 
@@ -106,3 +92,27 @@ let Crep = new Livre ('59k','Crepuscule','Juan',500);
 
 
 
+  function Person(firstName, lastName, age){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.isAdult = function() {return this.age > 18 }
+  }
+
+  function Student(firstName, lastName, age, level){
+    Person.call(this, firstName, lastName, age)
+    this.level=level;
+  }
+
+  function Stagiaire(firstName, lastName, age, exp){
+    Person.call(this, firstName, lastName, age)
+    this.exp=exp;
+  }
+
+  Student.prototype = Object.create(Person.prototype);
+  Stagiaire.prototype = Object.create(Person.prototype);
+  let rishi = new Student('Rishi', 'BEN', 21, 5);
+  display(rishi);
+  let lolo = new Stagiaire('Name', 'LOLO', 21, 6);
+  display(lolo);
+})();
